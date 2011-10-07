@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+  
+  <TextView 
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="Identificação da Viagem"
+  />
+  
+  <EditText 
+  	android:id="@+campo/titulo"
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:hint="Nome de identificação"
+  />
+  
+  <TextView 
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="Escolha o Destino"
+  />
+  <Spinner android:id="@+combo/destino" 
+  	android:layout_width="fill_parent" 
+  	android:layout_height="wrap_content"
+  	android:prompt="@string/spinner_states">
+  </Spinner> 
+  
+  <TextView 
+  	android:layout_width="fill_parent"
+  	android:layout_height="wrap_content"
+  	android:text="Escolha o Produto"
+  />
+  <Spinner 
+  	android:id="@+combo/produto" 
+  	android:layout_width="fill_parent" 
+  	android:layout_height="wrap_content"
+   	android:prompt="@string/spinner_products">
+  </Spinner>
+  
+  <LinearLayout 
+  	android:id="@+id/linearLayout1" 
+  	android:layout_width="fill_parent" 
+  	android:layout_height="wrap_content" 
+  	android:baselineAligned="false" 
+  	android:orientation="horizontal">
+      <ImageButton 
+      	android:layout_weight="1" 
+      	android:id="@+btn/sair" 
+      	android:layout_height="wrap_content" 
+      	android:layout_width="wrap_content"
+      	android:src="@android:drawable/ic_menu_revert"
+      	android:text="Sair">
+      </ImageButton>
+      <ImageButton android:id="@+btn/ok" 
+      	android:layout_height="wrap_content" 
+      	android:text="Confirmar" 
+      	android:layout_weight="1"
+      	android:src="@android:drawable/ic_menu_add" 
+      	android:layout_width="wrap_content">
+      	</ImageButton>
+  </LinearLayout> 
+  
+  
+    
+    
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+	<TextView 
+		android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Rota" 
+		android:id="@+id/textView1"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	<TextView 
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="" 
+		android:id="@+campo/rptDest"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	<TextView android:textAppearance="?android:attr/textAppearanceLarge"
+		android:text="Ordem de Carregamento" 
+		android:id="@+id/textView3"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	<TextView android:textAppearance="?android:attr/textAppearanceMedium"
+		android:text="" 
+		android:id="@+campo/rptProd"
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content">
+	</TextView>
+	<RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout1" android:layout_height="wrap_content">
+		<ImageButton 
+			android:src="@android:drawable/ic_menu_save" 
+			android:layout_width="wrap_content" 
+			android:tint="#000060" 
+			android:id="@+btn/goHome" 
+			android:layout_height="wrap_content" 
+			android:layout_alignParentTop="true" 
+			android:layout_alignParentRight="true">
+		</ImageButton>
+	</RelativeLayout>
+
+</LinearLayout>

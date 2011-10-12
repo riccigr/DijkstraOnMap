@@ -10,11 +10,11 @@ public class Vertex {
 	}
 	
 	public String getId() {
-		return this.id;
+		return id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 	
 	@Override

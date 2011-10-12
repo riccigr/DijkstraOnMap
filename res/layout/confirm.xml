@@ -43,5 +43,27 @@
 		android:layout_height="wrap_content" 
 		android:text="">
 	</TextView>
+	<LinearLayout 
+		android:id="@+id/linearLayout1" 
+		android:baselineAligned="false" 
+		android:layout_width="fill_parent" 
+		android:layout_height="wrap_content" 
+		android:orientation="horizontal">
+		<ImageButton 
+			android:src="@android:drawable/ic_menu_revert" 
+			android:layout_weight="1" 
+			android:layout_width="wrap_content" 
+			android:id="@+btn/voltarmain" 
+			android:layout_height="wrap_content">
+		</ImageButton>
+		<ImageButton 
+			android:src="@android:drawable/ic_menu_agenda" 
+			android:layout_weight="1" 
+			android:layout_width="wrap_content" 
+			android:tint="#006600" 
+			android:id="@+btn/confirm" 
+			android:layout_height="wrap_content">
+		</ImageButton>
+	</LinearLayout>
 
 </LinearLayout>

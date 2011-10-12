@@ -6,13 +6,13 @@
   android:layout_height="fill_parent">
     <TextView 
     	android:layout_width="wrap_content" 
-	    android:text="Nome do Produto" 
+	    android:text="Nome da Carga" 
 	    android:layout_height="wrap_content">
     </TextView>
     <EditText 
     	android:id="@+campo/newProd" 
     	android:layout_width="fill_parent"
-    	android:hint="Nome do Produto" 
+    	android:hint="Nome da Carga" 
     	android:layout_height="wrap_content">
         <requestFocus></requestFocus>
     </EditText>
@@ -27,7 +27,7 @@
         	android:id="@+btn/sair" 
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content"
-        	android:src="@android:drawable/ic_menu_revert"  
+        	android:src="@android:drawable/ic_menu_revert"
         	android:layout_weight="1">
         </ImageButton>
         <ImageButton 

@@ -8,14 +8,13 @@
   <TextView 
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
-  	android:text="Identificação da Viagem"
+  	android:text="Origem"
   />
-  
   <EditText 
-  	android:id="@+campo/titulo"
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
-  	android:hint="Nome de identificação"
+  	android:text=""
+  	android:id="@+campo/origro" 
   />
   
   <TextView 
@@ -32,7 +31,7 @@
   <TextView 
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
-  	android:text="Escolha o Produto"
+  	android:text="Escolha a Carga"
   />
   <Spinner 
   	android:id="@+combo/produto" 
@@ -60,7 +59,7 @@
       	android:text="Confirmar" 
       	android:layout_weight="1"
       	android:src="@android:drawable/ic_menu_add" 
-      	android:layout_width="wrap_content">
+      	android:layout_width="wrap_content" android:tint="#006600">
       	</ImageButton>
   </LinearLayout> 
   

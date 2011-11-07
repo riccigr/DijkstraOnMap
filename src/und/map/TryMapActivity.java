@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import und.map.R.btn;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -93,7 +95,7 @@ public class TryMapActivity extends Activity {
 		});
 	}
 		
-	//montagem de carga
+	//-- Montagem de carga
 	void screenMount(){
 		setContentView(R.layout.mount);
 		
@@ -101,6 +103,7 @@ public class TryMapActivity extends Activity {
 		Spinner productSpinner = (Spinner) findViewById(R.combo.produto);
 		ImageButton btnSair = (ImageButton) findViewById(R.btn.sair);
 		ImageButton btnOk = (ImageButton) findViewById(R.btn.ok);
+		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
 		txtOrig = (EditText) findViewById(R.campo.origro);
 		
 		ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
@@ -187,9 +190,16 @@ public class TryMapActivity extends Activity {
 				newItemDialog();
 			}
 		});
+		
+		btnInfo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showInfo(1);
+			}
+		});
 	}
 	
-	//-- cadastrar produtos
+	//-- Cadastrar produtos
 	void screenProduct(){
 		setContentView(R.layout.product);
 		
@@ -276,6 +286,7 @@ public class TryMapActivity extends Activity {
 		
 		ImageButton btnOk = (ImageButton) findViewById(R.btn.confirm);
 		ImageButton btnSair = (ImageButton) findViewById(R.btn.voltarmain);
+		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
 		EditText txtIdent = (EditText) findViewById(R.campo.editIdent);
 		TextView editDest = (TextView) findViewById(R.campo.editDest);
 		Spinner origSpinner = (Spinner) findViewById(R.combo.spinOrig);
@@ -304,7 +315,7 @@ public class TryMapActivity extends Activity {
 		//-- carregando os destinos
 		if (!listagemDestino.isEmpty()){
 			for ( Vertex dest : listagemDestino.keySet()){
-				txtDest += dest.getName().toString() +  listagemDestino.get(dest)  +" ) " + "\n";
+				txtDest += dest.getName().toString() + " ( " + listagemDestino.get(dest)  +" ) " + "\n";
 			}
 		}
 		editDest.setText(txtDest);
@@ -322,6 +333,13 @@ public class TryMapActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				screenCalc();
+			}
+		});
+		
+		btnInfo.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showInfo(2);
 			}
 		});
 	}
@@ -419,6 +437,47 @@ public class TryMapActivity extends Activity {
 		});
 		AlertDialog alertMsg = builderMsg.create();
 		alertMsg.setTitle("Adicionado com Sucesso");
+		alertMsg.show();
+		
+	}
+	
+	void showInfo(int opc){
+		
+		String info = "";
+		String title = "";
+		
+		switch(opc){
+			case 1:
+				title = "Montagem de Carga";
+				info = "Será escolhida a cidade de destino e qual a carga destinada a ela. \n\n" +
+						"Ao clicar em adicionar poderá escolhar um novo destino ou finalizar a carga.";
+				break;
+			case 2:
+				title = "Confirmação de Carga";
+				info = "Pode-se alterar a cidade de origem, cancelar ou confirmar a montagem da carga. \n\n" +
+						"Será gerada um roteiro e a ordem de carregamento do caminhão.";
+				break;	
+			case 3:
+				title = "Cadastro de Cargaa";
+				info = "Cadastro de novas cargas";
+				break;	
+		}
+		
+		
+		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
+		
+		builderMsg.setTitle(title);
+		builderMsg.setMessage(info);
+		builderMsg.setPositiveButton("Ok", new  AlertDialog.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				
+			}
+			
+		});
+
+		AlertDialog alertMsg = builderMsg.create();
+		alertMsg.setTitle("Informações");
 		alertMsg.show();
 		
 	}

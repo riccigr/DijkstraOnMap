@@ -11,12 +11,13 @@ public final class R {
     public static final class attr {
     }
     public static final class btn {
-        public static final int confirm=0x7f090001;
-        public static final int goHome=0x7f090006;
-        public static final int main_cadprod=0x7f090003;
-        public static final int main_mount=0x7f090002;
-        public static final int ok=0x7f090005;
-        public static final int sair=0x7f090004;
+        public static final int confirm=0x7f090002;
+        public static final int goHome=0x7f090007;
+        public static final int info=0x7f090001;
+        public static final int main_cadprod=0x7f090004;
+        public static final int main_mount=0x7f090003;
+        public static final int ok=0x7f090006;
+        public static final int sair=0x7f090005;
         public static final int voltarmain=0x7f090000;
     }
     public static final class campo {
@@ -36,7 +37,8 @@ public final class R {
         public static final int spinOrig=0x7f080000;
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int cm4=0x7f020000;
+        public static final int icon=0x7f020001;
     }
     public static final class id {
         public static final int linearLayout1=0x7f060003;

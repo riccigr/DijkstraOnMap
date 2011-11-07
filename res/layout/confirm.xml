@@ -54,14 +54,26 @@
 			android:layout_weight="1" 
 			android:layout_width="wrap_content" 
 			android:id="@+btn/voltarmain" 
+			android:background="@null" 
+			android:tint="#EE5C42"
+			android:layout_height="wrap_content">
+		</ImageButton>
+		<ImageButton 
+			android:src="@android:drawable/ic_menu_help" 
+			android:layout_weight="1" 
+			android:layout_width="wrap_content" 
+			android:id="@+btn/info" 
+			android:background="@null" 
+			android:tint="#FFF68F"
 			android:layout_height="wrap_content">
 		</ImageButton>
 		<ImageButton 
 			android:src="@android:drawable/ic_menu_agenda" 
 			android:layout_weight="1" 
 			android:layout_width="wrap_content" 
-			android:tint="#006600" 
+			android:tint="#BCEE68" 
 			android:id="@+btn/confirm" 
+			android:background="@null"
 			android:layout_height="wrap_content">
 		</ImageButton>
 	</LinearLayout>

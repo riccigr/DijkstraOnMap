@@ -9,6 +9,8 @@
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
   	android:text="Origem"
+  	android:textAppearance="?android:attr/textAppearanceLarge"
+
   />
   <EditText 
   	android:layout_width="fill_parent"
@@ -21,6 +23,7 @@
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
   	android:text="Escolha o Destino"
+  	android:textAppearance="?android:attr/textAppearanceLarge"
   />
   <Spinner android:id="@+combo/destino" 
   	android:layout_width="fill_parent" 
@@ -31,6 +34,7 @@
   <TextView 
   	android:layout_width="fill_parent"
   	android:layout_height="wrap_content"
+  	android:textAppearance="?android:attr/textAppearanceLarge"
   	android:text="Escolha a Carga"
   />
   <Spinner 
@@ -51,19 +55,30 @@
       	android:id="@+btn/sair" 
       	android:layout_height="wrap_content" 
       	android:layout_width="wrap_content"
+      	android:background="@null" 
       	android:src="@android:drawable/ic_menu_revert"
+      	android:tint="#EE5C42"
       	android:text="Sair">
       </ImageButton>
+
+      <ImageButton
+          android:id="@+btn/info"
+          android:layout_width="wrap_content"
+          android:layout_height="fill_parent"
+          android:layout_weight="0.95"
+          android:src="@android:drawable/ic_menu_help"
+          android:text="Button"
+          android:tint="#FFF68F"
+          android:background="@null" />
+
       <ImageButton android:id="@+btn/ok" 
       	android:layout_height="wrap_content" 
       	android:text="Confirmar" 
       	android:layout_weight="1"
+      	android:background="@null" 
       	android:src="@android:drawable/ic_menu_add" 
-      	android:layout_width="wrap_content" android:tint="#006600">
+      	android:layout_width="wrap_content" android:tint="#BCEE68">
       	</ImageButton>
-  </LinearLayout> 
-  
-  
-    
+  </LinearLayout>
     
 </LinearLayout>

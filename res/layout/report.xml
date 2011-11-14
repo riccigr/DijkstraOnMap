@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
+	android:orientation="vertical" android:layout_width="fill_parent" android:padding="10dip"
 	android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageButton
+            android:id="@+btn/sair"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#EE5C42" />
+
+        <ImageButton
+            android:id="@+btn/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.69"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_help"
+            android:text="Sair"
+            android:tint="#FFF68F" />
+
+    </LinearLayout>
 	<TextView 
 		android:textAppearance="?android:attr/textAppearanceLarge"
 		android:text="Rota" 
@@ -28,16 +53,6 @@
 		android:layout_width="wrap_content" 
 		android:layout_height="wrap_content">
 	</TextView>
-	<RelativeLayout android:layout_width="fill_parent" android:id="@+id/relativeLayout1" android:layout_height="wrap_content">
-		<ImageButton 
-			android:src="@android:drawable/ic_menu_save" 
-			android:layout_width="wrap_content" 
-			android:tint="#000060" 
-			android:id="@+btn/goHome" 
-			android:layout_height="wrap_content" 
-			android:layout_alignParentTop="true" 
-			android:layout_alignParentRight="true">
-		</ImageButton>
-	</RelativeLayout>
+
 
 </LinearLayout>

@@ -10,19 +10,45 @@
     android:layout_height="wrap_content" 
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="Selecione uma das opções abaixo:"
+    android:gravity="center_vertical|center_horizontal"
+    android:padding="10dip"
     />
-<Button  
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="Montar Carga"
-    android:id="@+btn/main_mount"
-    android:padding="2px"
-    />
+ 
+
+<!--     
 <Button  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:text="Cadastrar Produto"
     android:id="@+btn/main_cadprod"
-    />
+    />-->
+
+ <TextView
+     android:layout_width="fill_parent"
+     android:layout_height="wrap_content"
+     android:layout_alignParentLeft="true"
+     android:layout_alignParentTop="true"
+     android:text="Montagem de Carga"
+     android:gravity="center_vertical|center_horizontal"
+     android:textAppearance="?android:attr/textAppearanceMedium" />
+
+<ImageView
+    android:id="@+btn/cm"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/cm" />
+
+<TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="Cadastrar cargas"
+    android:gravity="center_vertical|center_horizontal"
+    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+<ImageView
+    android:id="@+btn/cx2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:src="@drawable/cx2" />
     
 </LinearLayout>

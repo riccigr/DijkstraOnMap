@@ -3,11 +3,47 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
+  android:padding="10dip"
   android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+
+        <ImageButton
+            android:id="@+btn/sair"
+            android:layout_width="158dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#EE5C42" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+btn/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.69"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_help"
+            android:text="Sair"
+            android:tint="#FFF68F" />
+
+    </LinearLayout>
+
     <TextView 
     	android:layout_width="wrap_content" 
 	    android:text="Nome da Carga" 
-	    android:layout_height="wrap_content">
+	    android:layout_height="wrap_content"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    >
     </TextView>
     <EditText 
     	android:id="@+campo/newProd" 
@@ -23,11 +59,12 @@
     	android:orientation="horizontal" 
     	android:baselineAligned="true">
         <ImageButton 
-        	android:text="Sair" 
-        	android:id="@+btn/sair" 
+        	android:id="@+btn/del" 
         	android:layout_width="wrap_content" 
         	android:layout_height="wrap_content"
-        	android:src="@android:drawable/ic_menu_revert"
+        	android:src="@android:drawable/ic_menu_delete"
+        	android:tint="#AA0000"
+        	android:background="@null"
         	android:layout_weight="1">
         </ImageButton>
         <ImageButton 
@@ -36,6 +73,8 @@
         	android:layout_height="wrap_content" 
         	android:layout_weight="1"
         	android:src="@android:drawable/ic_menu_add"  
+        	android:tint="#BCEE68"
+        	android:background="@null"
         	android:layout_width="wrap_content">
         </ImageButton>
     </LinearLayout>

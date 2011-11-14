@@ -3,7 +3,41 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:orientation="vertical"
   android:layout_width="fill_parent"
+  android:padding="10dip"
   android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageButton
+            android:id="@+btn/sair"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_revert"
+            android:text="Sair"
+            android:tint="#EE5C42" />
+
+        <ImageButton
+            android:id="@+btn/info"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.95"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_help"
+            android:text="Button"
+            android:tint="#FFF68F" />
+
+    </LinearLayout>
   
   <TextView 
   	android:layout_width="fill_parent"
@@ -51,26 +85,14 @@
   	android:baselineAligned="false" 
   	android:orientation="horizontal">
       <ImageButton 
-      	android:layout_weight="1" 
-      	android:id="@+btn/sair" 
-      	android:layout_height="wrap_content" 
-      	android:layout_width="wrap_content"
-      	android:background="@null" 
-      	android:src="@android:drawable/ic_menu_revert"
-      	android:tint="#EE5C42"
-      	android:text="Sair">
-      </ImageButton>
-
-      <ImageButton
-          android:id="@+btn/info"
-          android:layout_width="wrap_content"
-          android:layout_height="fill_parent"
-          android:layout_weight="0.95"
-          android:src="@android:drawable/ic_menu_help"
-          android:text="Button"
-          android:tint="#FFF68F"
-          android:background="@null" />
-
+        	android:id="@+btn/del" 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content"
+        	android:src="@android:drawable/ic_menu_delete"
+        	android:tint="#AA0000"
+        	android:background="@null"
+        	android:layout_weight="1">
+	</ImageButton>
       <ImageButton android:id="@+btn/ok" 
       	android:layout_height="wrap_content" 
       	android:text="Confirmar" 

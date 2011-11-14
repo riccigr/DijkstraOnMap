@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent"
+	android:orientation="vertical" android:layout_width="fill_parent" android:padding="10dip"
 	android:layout_height="fill_parent">
 
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-	<TextView android:id="@+id/textView2" android:textAppearance="?android:attr/textAppearanceLarge"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:text="Identificação" android:layout_gravity="center_vertical">
-	</TextView>
-	
-	<EditText 
-		android:id="@+campo/editIdent" 
-		android:layout_width="fill_parent"
-		android:layout_height="wrap_content">
-		<requestFocus></requestFocus>
-	</EditText>
+        <ImageButton
+            android:id="@+btn/voltarmain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_revert"
+            android:tint="#EE5C42" />
+
+        <ImageButton
+            android:id="@+btn/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:src="@android:drawable/ic_menu_help"
+            android:tint="#FFF68F" />
+
+    </LinearLayout>
+
 	<TextView 
 		android:id="@+id/textView3" 
 		android:textAppearance="?android:attr/textAppearanceLarge"
@@ -49,24 +62,6 @@
 		android:layout_width="fill_parent" 
 		android:layout_height="wrap_content" 
 		android:orientation="horizontal">
-		<ImageButton 
-			android:src="@android:drawable/ic_menu_revert" 
-			android:layout_weight="1" 
-			android:layout_width="wrap_content" 
-			android:id="@+btn/voltarmain" 
-			android:background="@null" 
-			android:tint="#EE5C42"
-			android:layout_height="wrap_content">
-		</ImageButton>
-		<ImageButton 
-			android:src="@android:drawable/ic_menu_help" 
-			android:layout_weight="1" 
-			android:layout_width="wrap_content" 
-			android:id="@+btn/info" 
-			android:background="@null" 
-			android:tint="#FFF68F"
-			android:layout_height="wrap_content">
-		</ImageButton>
 		<ImageButton 
 			android:src="@android:drawable/ic_menu_agenda" 
 			android:layout_weight="1" 

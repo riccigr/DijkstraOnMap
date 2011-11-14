@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import und.map.R.btn;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -18,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +56,7 @@ public class TryMapActivity extends Activity {
 //	List<Vertex> listagemDestino = new ArrayList<Vertex>();		//-- cidades de destino
 	HashMap<Vertex, String> listagemDestino = new HashMap<Vertex, String>();
 	EditText novo_produto, txtOrig;			//-- produto a ser adicionado //-- cidade origem
+	String txOrigem = "";
 	int inicio = -10;						//-- valor da cidade origem
 	int fim = 0;							//-- valor da cidade destino
 	int productChoosed = 0;				//-- item escolhido para a viagem.
@@ -69,8 +69,10 @@ public class TryMapActivity extends Activity {
 	void screenMain(){
 		setContentView(R.layout.first);
 	
-		Button btnMount = (Button) findViewById(R.btn.main_mount);
-		Button btnCadProd = (Button) findViewById(R.btn.main_cadprod);
+	//	Button btnMount = (Button) findViewById(R.btn.main_mount);
+	//	Button btnCadProd = (Button) findViewById(R.btn.main_cadprod);
+		ImageView btnMount = (ImageView) findViewById(R.btn.cm);
+		ImageView btnCadProd = (ImageView) findViewById(R.btn.cx2);
 		
 		btnMount.setOnClickListener( new View.OnClickListener() {
 			@Override
@@ -104,6 +106,7 @@ public class TryMapActivity extends Activity {
 		ImageButton btnSair = (ImageButton) findViewById(R.btn.sair);
 		ImageButton btnOk = (ImageButton) findViewById(R.btn.ok);
 		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
+		ImageButton btnDel = (ImageButton) findViewById(R.btn.del);
 		txtOrig = (EditText) findViewById(R.campo.origro);
 		
 		ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
@@ -135,7 +138,8 @@ public class TryMapActivity extends Activity {
 			    public void onClick(DialogInterface dialog, int item) {
 			        Toast.makeText(getApplicationContext(), stateArray[item], Toast.LENGTH_SHORT).show();
 			        inicio = item;
-			        txtOrig.setText(stateArray[item]);
+			        txOrigem = stateArray[item];
+			        txtOrig.setText(txOrigem);
 			        txtOrig.setInputType(0);
 			        dialog.cancel();
 			    }
@@ -185,7 +189,6 @@ public class TryMapActivity extends Activity {
 				if (!isEnvOk){
 					createEnv();
 				}
-		//		listagemDestino.add(vertices.get(fim));
 				listagemDestino.put(vertices.get(fim), listProducts.get(productChoosed));
 				newItemDialog();
 			}
@@ -197,6 +200,65 @@ public class TryMapActivity extends Activity {
 				showInfo(1);
 			}
 		});
+		
+		btnDel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(!listagemDestino.isEmpty()){
+					int sizeList = listagemDestino.size();
+					int tmpCont = sizeList;
+					final String[] tmpArray = new String[sizeList];
+					final ArrayList<Object> tmpRemoveId = new ArrayList<Object>();
+
+					final boolean[] boolArray = null;
+					for (Vertex prod : listagemDestino.keySet()){
+						tmpArray[sizeList-tmpCont] = prod.getName();
+						tmpCont -= 1;
+					}
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(TryMapActivity.this);
+					builder.setTitle("Escolha os destinos a remover");
+					builder.setMultiChoiceItems(tmpArray, boolArray, new DialogInterface.OnMultiChoiceClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+							if(isChecked){
+								tmpRemoveId.add(tmpArray[which]);
+							}else{
+								tmpRemoveId.remove(tmpArray[which]);
+							}
+						}
+					});
+					builder.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				        	   if (!tmpRemoveId.isEmpty()){	
+				        	   for(Object idRomve : tmpRemoveId){
+				        		   if(listagemDestino.containsKey( idRomve )){
+				        		   		listagemDestino.remove(idRomve);
+				        	   //	   listagemDestino.remove(getKeyFromValue(listagemDestino,idRomve));
+				        		   }else{
+				        			   for(Vertex opc : listagemDestino.keySet()){
+				        				   System.out.println("Selecionado = " + idRomve);
+				        				   System.out.println(opc.getName());
+				        			   }
+				        		   }
+				        	   }
+				        	   }
+				        	   Toast.makeText(getApplicationContext(), "Destinos removidos com sucesso!", Toast.LENGTH_SHORT).show();
+				           }
+				       });
+					builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                dialog.cancel();
+				           }
+				       });
+				AlertDialog alerta = builder.create();
+				alerta.show();
+
+				}else{
+			        Toast.makeText(getApplicationContext(), "Não há destinos registradas. \nAdicione um.", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
 	}
 	
 	//-- Cadastrar produtos
@@ -205,6 +267,8 @@ public class TryMapActivity extends Activity {
 		
 		ImageButton btnSair = (ImageButton) findViewById(R.btn.sair);
 		ImageButton btnOk = (ImageButton) findViewById(R.btn.ok);
+		ImageButton btnDel = (ImageButton) findViewById(R.btn.del);
+		ImageButton btnInf = (ImageButton) findViewById(R.btn.info);
 		novo_produto = (EditText) findViewById(R.campo.newProd);
 		
 		btnOk.setOnClickListener( new View.OnClickListener() {
@@ -216,12 +280,74 @@ public class TryMapActivity extends Activity {
 			}
 		});
 		
+		btnInf.setOnClickListener( new View.OnClickListener() {
+			@Override
+			public void onClick(View vi) {
+				showInfo(3);
+			}
+		});
+		
 		btnSair.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				screenMain();
 			}
 		});
+		
+		
+		btnDel.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if(!listProducts.isEmpty()){
+					int sizeList = listProducts.size();
+					int tmpCont = sizeList;
+					final String[] tmpArray = new String[sizeList];
+					final ArrayList<String> tmpRemoveId = new ArrayList<String>();
+
+					final boolean[] boolArray = null;
+					for (String prod : listProducts){
+						tmpArray[sizeList-tmpCont] = prod;
+						tmpCont -= 1;
+					}
+					
+					AlertDialog.Builder builder = new AlertDialog.Builder(TryMapActivity.this);
+					builder.setTitle("Escolha as Cargas a remover");
+					builder.setMultiChoiceItems(tmpArray, boolArray, new DialogInterface.OnMultiChoiceClickListener() {
+						@Override
+						public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+							if(isChecked){
+								tmpRemoveId.add(tmpArray[which]);
+							}else{
+								tmpRemoveId.remove(tmpArray[which]);
+							}
+						}
+					});
+					builder.setPositiveButton("Remover", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				        	   if (!tmpRemoveId.isEmpty()){	
+				        	   for(String idRomve : tmpRemoveId){
+				        	   		if (listProducts.contains(idRomve)){
+				        	   			listProducts.remove(idRomve);
+				        	   		}
+				        	   	}
+				        	   }
+				        	   Toast.makeText(getApplicationContext(), "Cargas Removidas com Sucesso!", Toast.LENGTH_SHORT).show();
+				           }
+				       });
+					builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+				           public void onClick(DialogInterface dialog, int id) {
+				                dialog.cancel();
+				           }
+				       });
+				AlertDialog alerta = builder.create();
+				alerta.show();
+
+				}else{
+			        Toast.makeText(getApplicationContext(), "Não há cargas registradas. \n Registre uma.", Toast.LENGTH_SHORT).show();
+				}
+			}
+		});
+		
 	}
 
 	//-- calculo da rota e saida de resultado
@@ -234,7 +360,8 @@ public class TryMapActivity extends Activity {
 		int cont = 1;
 		TextView txtDest = (TextView) findViewById(R.campo.rptDest);
 		TextView txtProd = (TextView) findViewById(R.campo.rptProd);
-		ImageButton btnSave = (ImageButton) findViewById(R.btn.goHome);
+		ImageButton btnMain = (ImageButton) findViewById(R.btn.sair);
+		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
 		
 		//-- inicia algoritmo
 		Graph graph = new Graph(vertices, arcos);
@@ -272,10 +399,17 @@ public class TryMapActivity extends Activity {
 		txtProd.setText(rptProdutos);
 		
 		
-		btnSave.setOnClickListener( new View.OnClickListener() {
+		btnMain.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				screenMain();
+			}
+		});
+		
+		btnInfo.setOnClickListener( new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showInfo(4);
 			}
 		});
 	}
@@ -287,14 +421,14 @@ public class TryMapActivity extends Activity {
 		ImageButton btnOk = (ImageButton) findViewById(R.btn.confirm);
 		ImageButton btnSair = (ImageButton) findViewById(R.btn.voltarmain);
 		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
-		EditText txtIdent = (EditText) findViewById(R.campo.editIdent);
+//		EditText txtIdent = (EditText) findViewById(R.campo.editIdent);
 		TextView editDest = (TextView) findViewById(R.campo.editDest);
 		Spinner origSpinner = (Spinner) findViewById(R.combo.spinOrig);
 		ArrayAdapter<String> origAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
 		String txtDest = "";
 	
 		//-- setando identificacao
-		txtIdent.setText(android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new java.util.Date()));
+//		txtIdent.setText(android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss", new java.util.Date()));
 		
 		//-- carregando a cidade origem
 		origAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -307,6 +441,7 @@ public class TryMapActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 				inicio = position;
+				txOrigem = stateArray[position];
 			}
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {}
@@ -374,18 +509,18 @@ public class TryMapActivity extends Activity {
 		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
 		
 		builderMsg.setTitle("Adicionado com Sucesso");
-		builderMsg.setMessage("Deseja adicionar novos produtos ou finalizar a carga?");
-		builderMsg.setPositiveButton("Finalizar", new AlertDialog.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface arg0, int arg1) {
-				 screenConfirm();
-			}
-		});
+		builderMsg.setMessage("Deseja adicionar novas cargas ou finalizar a carga?");
 		builderMsg.setNegativeButton("Adicionar Produto", new  AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
 				screenMount();
+			}
+		});
+		builderMsg.setPositiveButton("Finalizar", new AlertDialog.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				 screenConfirm();
 			}
 		});
 		AlertDialog alertMsg = builderMsg.create();
@@ -449,17 +584,24 @@ public class TryMapActivity extends Activity {
 		switch(opc){
 			case 1:
 				title = "Montagem de Carga";
-				info = "Será escolhida a cidade de destino e qual a carga destinada a ela. \n\n" +
-						"Ao clicar em adicionar poderá escolhar um novo destino ou finalizar a carga.";
+				info =  "Serão escolhidas a cidade de origem, os destinos e qual a carga destinada a ela.\n\n" +
+						"Ao clicar em adicionar poderá escolhar um novo destino ou finalizar a carga.\n\n" +
+						"Cada destino pode ter apenas uma carga relacionada.";
 				break;
 			case 2:
 				title = "Confirmação de Carga";
-				info = "Pode-se alterar a cidade de origem, cancelar ou confirmar a montagem da carga. \n\n" +
+				info =  "Pode-se alterar a cidade de origem, cancelar ou confirmar a montagem da carga. \n\n" +
 						"Será gerada um roteiro e a ordem de carregamento do caminhão.";
 				break;	
 			case 3:
-				title = "Cadastro de Cargaa";
-				info = "Cadastro de novas cargas";
+				title = "Cadastro de Carga";
+				info = "Cadastro de novas cargas que irão ser adicionados aos seus destinos";
+				break;	
+			case 4:
+				title = "Rota";
+				info = "Esta é a rota calculada contendo a ordem das cidades que deverão ser percorridas"+
+						"e a ordem na qual o caminhão deve ser carregado.\n\n" +
+						"Para gerar uma nova rota clique no botão de retorno.";
 				break;	
 		}
 		
@@ -477,7 +619,7 @@ public class TryMapActivity extends Activity {
 		});
 
 		AlertDialog alertMsg = builderMsg.create();
-		alertMsg.setTitle("Informações");
+		alertMsg.setTitle(title);
 		alertMsg.show();
 		
 	}
@@ -566,5 +708,15 @@ public class TryMapActivity extends Activity {
         listProducts.add("444444");
 
 	}
+	
+	public static Vertex getKeyFromValue(HashMap hm, Object value) {
+	    for (Object o : hm.keySet()) {
+	      if (hm.get(o).equals(value)) {
+	    	  System.out.println((String) o.toString());
+	        return (Vertex) o;
+	      }
+	    }
+	    return null;
+	  }
     
 }

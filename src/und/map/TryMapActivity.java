@@ -153,6 +153,9 @@ public class TryMapActivity extends Activity {
 		       });
 			AlertDialog alert = builder.create();
 			alert.show();
+		}else{
+	        txtOrig.setText(vertices.get(inicio).getName());
+	        txtOrig.setInputType(0);
 		}
 		
 		//-- carregar lista de produtos
@@ -357,9 +360,10 @@ public class TryMapActivity extends Activity {
 //		vertices = new ArrayList<Vertex>();
 //		arcos = new ArrayList<Edge>();
 		String route = "", rptDestinos = "", rptProdutos = "";
-		int cont = 1;
+		int cont = 1, rptDistancia = 0;
 		TextView txtDest = (TextView) findViewById(R.campo.rptDest);
 		TextView txtProd = (TextView) findViewById(R.campo.rptProd);
+		TextView txtDist = (TextView) findViewById(R.campo.rptDist);
 		ImageButton btnMain = (ImageButton) findViewById(R.btn.sair);
 		ImageButton btnInfo = (ImageButton) findViewById(R.btn.info);
 		
@@ -388,7 +392,7 @@ public class TryMapActivity extends Activity {
 				linha += " -> " + target.getName();
 				rptDestinos += cont + "¼ Destino: " + target.getName() + "\n";
 				rptProdutos += cont + "» Carga: " + listagemDestino.get(target) + "\n";
-
+				rptDistancia += dijkstra.printDistancia(target);
 				cont++;
 				listagemDestino.remove(target);
 				dijkstra.execute(target);
@@ -397,6 +401,7 @@ public class TryMapActivity extends Activity {
 		System.out.println(linha);
 		txtDest.setText(rptDestinos);
 		txtProd.setText(rptProdutos);
+		txtDist.setText(rptDistancia + " metros");
 		
 		
 		btnMain.setOnClickListener( new View.OnClickListener() {
@@ -702,10 +707,11 @@ public class TryMapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         screenMain();
-        listProducts.add("111111");
-        listProducts.add("222222");
-        listProducts.add("333333");
-        listProducts.add("444444");
+        listProducts.add("Carga");
+        listProducts.add("Pacotes");
+        listProducts.add("Toneis");
+        listProducts.add("Caixotes");
+        listProducts.add("Containers");
 
 	}
 	

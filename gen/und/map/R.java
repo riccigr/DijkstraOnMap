@@ -25,6 +25,7 @@ public final class R {
         public static final int newProd=0x7f090002;
         public static final int origro=0x7f090001;
         public static final int rptDest=0x7f090003;
+        public static final int rptDist=0x7f090005;
         public static final int rptProd=0x7f090004;
     }
     public static final class color {

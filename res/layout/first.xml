@@ -11,6 +11,7 @@
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="Selecione uma das opções abaixo:"
     android:gravity="center_vertical|center_horizontal"
+    android:textColor="#FFD700"
     android:padding="10dip"
     />
  

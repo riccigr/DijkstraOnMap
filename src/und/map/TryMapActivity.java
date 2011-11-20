@@ -112,7 +112,6 @@ public class TryMapActivity extends Activity {
 		ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
 		ArrayAdapter<String> productAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
 		
-		
 		//-- carregar a lista de cidades
 		stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		stateSpinner.setAdapter(stateAdapter);
@@ -156,6 +155,7 @@ public class TryMapActivity extends Activity {
 		}else{
 	        txtOrig.setText(vertices.get(inicio).getName());
 	        txtOrig.setInputType(0);
+	  	    Toast.makeText(TryMapActivity.this, "Insira um novo destino e sua nota fiscal!", Toast.LENGTH_SHORT).show();
 		}
 		
 		//-- carregar lista de produtos
@@ -277,9 +277,13 @@ public class TryMapActivity extends Activity {
 		btnOk.setOnClickListener( new View.OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				listProducts.add(novo_produto.getText().toString());
-				novo_produto.setText("");
-				newProdDialog();
+				if(novo_produto.getText().toString().trim().length() != 0 && novo_produto.getText().toString() != null){
+					listProducts.add(novo_produto.getText().toString());
+					novo_produto.setText("");
+					newProdDialog();
+				}else{
+		        	Toast.makeText(TryMapActivity.this, "Digite o numero para a nota fiscal!", Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 		
@@ -314,7 +318,7 @@ public class TryMapActivity extends Activity {
 					}
 					
 					AlertDialog.Builder builder = new AlertDialog.Builder(TryMapActivity.this);
-					builder.setTitle("Escolha as Cargas a remover");
+					builder.setTitle("Escolha as notas fiscais a remover");
 					builder.setMultiChoiceItems(tmpArray, boolArray, new DialogInterface.OnMultiChoiceClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -334,7 +338,7 @@ public class TryMapActivity extends Activity {
 				        	   		}
 				        	   	}
 				        	   }
-				        	   Toast.makeText(getApplicationContext(), "Cargas Removidas com Sucesso!", Toast.LENGTH_SHORT).show();
+				        	   Toast.makeText(getApplicationContext(), "notas ficais removidas com Sucesso!", Toast.LENGTH_SHORT).show();
 				           }
 				       });
 					builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -346,7 +350,7 @@ public class TryMapActivity extends Activity {
 				alerta.show();
 
 				}else{
-			        Toast.makeText(getApplicationContext(), "Não há cargas registradas. \n Registre uma.", Toast.LENGTH_SHORT).show();
+			        Toast.makeText(getApplicationContext(), "Não há notas ficais registradas. \nRegistre uma.", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -391,7 +395,7 @@ public class TryMapActivity extends Activity {
 			if (target != null){
 				linha += " -> " + target.getName();
 				rptDestinos += cont + "º Destino: " + target.getName() + "\n";
-				rptProdutos += cont + "ª Carga: " + listagemDestino.get(target) + "\n";
+				rptProdutos += cont + "ª Nota Fical: " + listagemDestino.get(target) + "\n";
 				rptDistancia += dijkstra.printDistancia(target);
 				cont++;
 				listagemDestino.remove(target);
@@ -401,7 +405,7 @@ public class TryMapActivity extends Activity {
 		System.out.println(linha);
 		txtDest.setText(rptDestinos);
 		txtProd.setText(rptProdutos);
-		txtDist.setText(rptDistancia + " metros");
+		txtDist.setText(rptDistancia + " Km");
 		
 		
 		btnMain.setOnClickListener( new View.OnClickListener() {
@@ -489,8 +493,8 @@ public class TryMapActivity extends Activity {
 	void noProductDialog(){
 		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
 		
-		builderMsg.setTitle("Não há produtos cadastrados");
-		builderMsg.setMessage("Deseja cadastrar os produtos agora?");
+		builderMsg.setTitle("Não há notas fiscais registradas");
+		builderMsg.setMessage("Deseja registrar notas fiscais agora?");
 		builderMsg.setPositiveButton("Sim", new AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
@@ -504,7 +508,7 @@ public class TryMapActivity extends Activity {
 			}
 		});
 		AlertDialog alertMsg = builderMsg.create();
-		alertMsg.setTitle("Não há produtos cadastrados");
+		alertMsg.setTitle("Não há notas fiscais cadastradas");
 		alertMsg.show();
 		
 	}
@@ -514,8 +518,8 @@ public class TryMapActivity extends Activity {
 		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
 		
 		builderMsg.setTitle("Adicionado com Sucesso");
-		builderMsg.setMessage("Deseja adicionar novas cargas ou finalizar a carga?");
-		builderMsg.setNegativeButton("Adicionar Produto", new  AlertDialog.OnClickListener() {
+		builderMsg.setMessage("Deseja adicionar novas notas ficais ou finalizar a montagem?");
+		builderMsg.setNegativeButton("Adicionar Destino", new  AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
@@ -537,15 +541,15 @@ public class TryMapActivity extends Activity {
 	void backConfirmDialog(){
 		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
 
-		builderMsg.setTitle("Cancelar Montagem de Carga");
-		builderMsg.setMessage("Deseja adicionar novos produtos ou cancelar a ação?");
+		builderMsg.setTitle("Cancelar");
+		builderMsg.setMessage("Deseja adicionar novas notas fiscais ou cancelar a ação?");
 		builderMsg.setPositiveButton("Cancelar", new AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
 				 screenMain();
 			}
 		});
-		builderMsg.setNegativeButton("Adicionar Produto", new  AlertDialog.OnClickListener() {
+		builderMsg.setNegativeButton("Adicionar", new  AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				
@@ -561,8 +565,8 @@ public class TryMapActivity extends Activity {
 	void newProdDialog(){
 		AlertDialog.Builder builderMsg = new AlertDialog.Builder(TryMapActivity.this);
 		
-		builderMsg.setTitle("Adicionado com Sucesso");
-		builderMsg.setMessage("Continuar adicionando produtos?");
+		builderMsg.setTitle("Adicionado com sucesso");
+		builderMsg.setMessage("Continuar adicionando notas fiscais?");
 		builderMsg.setPositiveButton("Sim", new AlertDialog.OnClickListener() {
 			@Override
 			public void onClick(DialogInterface arg0, int arg1) {
@@ -588,24 +592,24 @@ public class TryMapActivity extends Activity {
 		
 		switch(opc){
 			case 1:
-				title = "Montagem de Carga";
-				info =  "Serão escolhidas a cidade de origem, os destinos e qual a carga destinada a ela.\n\n" +
-						"Ao clicar em adicionar poderá escolhar um novo destino ou finalizar a carga.\n\n" +
-						"Cada destino pode ter apenas uma carga relacionada.";
+				title = "Montagem de Roteiro";
+				info =  "Serão escolhidas a cidade de origem, os destinos e qual a nota fiscal destinada a ela.\n\n" +
+						"Ao clicar em adicionar poderá escolhar um novo destino ou finalizar a nota fiscal.\n\n" +
+						"Cada destino pode ter apenas uma nota fiscal relacionada.";
 				break;
 			case 2:
-				title = "Confirmação de Carga";
-				info =  "Pode-se alterar a cidade de origem, cancelar ou confirmar a montagem da carga. \n\n" +
-						"Será gerada um roteiro e a ordem de carregamento do caminhão.";
+				title = "Confirmação de Roteiro";
+				info =  "Pode-se alterar a cidade de origem, cancelar ou confirmar a montagem de reoteiro. \n\n" +
+						"Será gerada um roteiro e a ordem de entrega das notas fiscais.";
 				break;	
 			case 3:
-				title = "Cadastro de Carga";
-				info = "Cadastro de novas cargas que irão ser adicionados aos seus destinos";
+				title = "Cadastro de Nota Fiscal";
+				info = "Cadastro de novas notas fiscais que irão ser adicionados aos seus destinos";
 				break;	
 			case 4:
 				title = "Rota";
 				info = "Esta é a rota calculada contendo a ordem das cidades que deverão ser percorridas"+
-						"e a ordem na qual o caminhão deve ser carregado.\n\n" +
+						"e a ordem na qual as notas fiscais deverão ser entregues.\n\n" +
 						"Para gerar uma nova rota clique no botão de retorno.";
 				break;	
 		}
@@ -707,11 +711,11 @@ public class TryMapActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         screenMain();
-        listProducts.add("Carga");
-        listProducts.add("Pacotes");
-        listProducts.add("Toneis");
-        listProducts.add("Caixotes");
-        listProducts.add("Containers");
+//        listProducts.add("Carga");
+//        listProducts.add("Pacotes");
+//        listProducts.add("Toneis");
+//        listProducts.add("Caixotes");
+//        listProducts.add("Containers");
 
 	}
 	

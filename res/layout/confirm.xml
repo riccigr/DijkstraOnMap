@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical" android:layout_width="fill_parent" android:padding="10dip"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+<LinearLayout 
+	android:orientation="vertical" 
+	android:layout_width="fill_parent" 
+	android:padding="10dip"
 	android:layout_height="fill_parent">
+	      
 	<TextView  
     android:layout_width="fill_parent" 
     android:layout_height="wrap_content" 
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:text="Confirmação de Montagem"
     android:gravity="center_vertical|center_horizontal"
-        android:textColor="#FFD700"
-    />
+    android:textColor="#FFD700"   />
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
@@ -32,7 +39,6 @@
             android:background="@null"
             android:src="@android:drawable/ic_menu_help"
             android:tint="#FFF68F" />
-
     </LinearLayout>
 
 	<TextView 
@@ -81,3 +87,4 @@
 	</LinearLayout>
 
 </LinearLayout>
+</ScrollView>
